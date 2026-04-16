@@ -54,7 +54,7 @@ const VULN_OPTIONS: { value: Vulnerability; label: string }[] = [
   { value: 'Dialysis', label: 'Dialysis Patient' },
 ]
 
-const CITY_BARANGAY_MAP: Record<string, string[]> = {
+const NEGROS_OCCIDENTAL: Record<string, string[]> = {
   'Bacolod City': [
     'Alangilan', 'Alijis', 'Banago', 'Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4', 'Barangay 5',
     'Barangay 6', 'Barangay 7', 'Barangay 8', 'Barangay 9', 'Barangay 10', 'Barangay 11', 'Barangay 12',
@@ -74,33 +74,126 @@ const CITY_BARANGAY_MAP: Record<string, string[]> = {
   'Cadiz City': ['Andres Bonifacio', 'Burgos', 'Cabahug', 'Cadiz Viejo', 'Caduha-an', 'Celestino Villacin', 'Daga', 'Jerusalem', 'Luna', 'Mabini', 'Magsaysay', 'Sicaba', 'Tiglawigan', 'Zone 1', 'Zone 2', 'Zone 3', 'Zone 4', 'Zone 5', 'Zone 6'],
   'Murcia': ['Abejuvela', 'Amaya', 'Anahaw', 'Buenavista', 'Caliban', 'Canlandog', 'Cansilayan', 'Damsite', 'Iglau-an', 'Lopez Jaena', 'Minoyan', 'Pandanon', 'Salvacion', 'San Miguel', 'Santa Cruz', 'Santa Rosa', 'Talotog', 'Zone I', 'Zone II', 'Zone III', 'Zone IV', 'Zone V'],
   'La Carlota City': ['Ara-al', 'Ayungon', 'Balabag', 'Barangay I', 'Barangay II', 'Barangay III', 'Batuan', 'Cubay', 'Haguimit', 'La Granja', 'Nagasi', 'Roberto S. Benedicto', 'San Miguel', 'Yubo'],
-  'Canlaon City': ['Bayog', 'Binalbagan', 'Bucalan', 'Budlasan', 'Linothangan', 'Lumapao', 'Mabigo', 'Malaiba', 'Masulog', 'Ninoy Aquino', 'Panubigan', 'Pula'],
   'Sagay City': ['Bato', 'Baviera', 'Bulanon', 'Campo Himoga-an', 'Campo Santiago', 'Colonia Divina', 'Fabrica', 'General Luna', 'Himoga-an Baybay', 'Lopez Jaena', 'Malubon', 'Molocaboc', 'Old Sagay', 'Plaridel', 'Poblacion I', 'Poblacion II', 'Rizal', 'Sewane', 'Taba-ao', 'Tadlong', 'Vito'],
   'Silay City': ['Bagtic', 'Balaring', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Guimbala-on', 'Guinhalaran', 'Kapitan Ramon', 'Lantad', 'Mambulac', 'Patag', 'Rizal'],
   'Talisay City': ['Bubog', 'Cabacungan', 'Concepcion', 'Dos Hermanas', 'Efigenio Lizares', 'Katubhan', 'Matab-ang', 'Poblacion', 'San Fernando', 'Tanza', 'Zone 1', 'Zone 2', 'Zone 3', 'Zone 4', 'Zone 4-A', 'Zone 5', 'Zone 6', 'Zone 7', 'Zone 8', 'Zone 9', 'Zone 10', 'Zone 11', 'Zone 12', 'Zone 12-A', 'Zone 14', 'Zone 14-A', 'Zone 14-B', 'Zone 15', 'Zone 16'],
   'Victorias City': ['Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Barangay VI', 'Barangay VII', 'Barangay VIII', 'Barangay IX', 'Barangay X', 'Barangay XI', 'Barangay XII', 'Barangay XIII', 'Barangay XIV', 'Barangay XV', 'Barangay XVI', 'Barangay XVII', 'Barangay XVIII', 'Barangay XIX', 'Barangay XX', 'Barangay XXI'],
+  'Himamaylan City': ['Aguisan', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Buenavista', 'Cabadiangan', 'Cabanbanan', 'Carabalan', 'Libacao', 'Mahalang', 'Nabali-an', 'San Antonio', 'Saraet', 'Su-ay', 'Talaban', 'To-oy'],
+  'Kabankalan City': ['Bantayan', 'Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4', 'Barangay 5', 'Barangay 6', 'Barangay 7', 'Barangay 8', 'Barangay 9', 'Binicuil', 'Camansi', 'Camingawan', 'Camugao', 'Carol-an', 'Daan Banua', 'Hilamonan', 'Inapoy', 'Linao', 'Locotan', 'Magballo', 'Oringao', 'Orong', 'Pinaguinpinan', 'Salong', 'Tabugon', 'Tagoc', 'Tagukon', 'Tampalon', 'Tan-Awan', 'Tayum'],
+  'Escalante City': ['Alimango', 'Balintawak', 'Binaguiohan', 'Buenavista', 'Cervantes', 'Dian-ay', 'Haba', 'Japitan', 'Jonobjonob', 'Langub', 'Libertad', 'Mabini', 'Magsaysay', 'Malasibog', 'Old Poblacion', 'Paitan', 'Pinapugasan', 'Rizal', 'Tamlang', 'Udtongan', 'Washington'],
+  'San Carlos City': ['Bagonbon', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Barangay VI', 'Buluangan', 'Codcod', 'Ermita', 'Guadalupe', 'Nataban', 'Palampas', 'Prinza', 'Prosperidad', 'Punao', 'Quezon', 'Rizal', 'San Juan'],
+  'Hinigaran': ['Anahaw', 'Aranda', 'Baga-as', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Bato', 'Calapi', 'Camalobalo', 'Cambugsa', 'Candumarao', 'Gargato', 'Himaya', 'Miranda', 'Nanunga', 'Narauis', 'Palaca', 'Paticui', 'Pilar', 'Quiwi', 'Tagda', 'Tuguis'],
+  'Cauayan': ['Abaca', 'Baclao', 'Basak', 'Bulata', 'Caliling', 'Camalanda-an', 'Camansi', 'Canlamay', 'Isio', 'Linaon', 'Mambugsay', 'Molobolo', 'Poblacion', 'Sipalay', 'Talacdan', 'Tambad', 'Tiling', 'Tomina', 'Tuyom'],
+  'Sipalay City': ['Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4', 'Barangay 5', 'Cabadiangan', 'Camindangan', 'Canturay', 'Cartagena', 'Cayhagan', 'Gil Montilla', 'Mambaroto', 'Nabulao', 'Nauhang', 'San Jose', 'Sangi'],
+  'Ilog': ['Andulauan', 'Balicotoc', 'Bocana', 'Calubang', 'Canlamay', 'Consolacion', 'Dancalan', 'Delicioso', 'Gatuslao', 'Malabago', 'Manalad', 'Pinggot', 'Poblacion', 'Tabu', 'Vista Alegre'],
+  'Isabela': ['Amin', 'Bara-as', 'Binadlan', 'Bungahin', 'Cansalongon', 'Guintubhan', 'Libas', 'Mansablay', 'Mayondon', 'Panaquiao', 'Poblacion 1', 'Poblacion 2', 'Poblacion 3', 'Poblacion 4', 'Poblacion 5', 'Poblacion 6', 'Poblacion 7', 'Poblacion 8', 'Poblacion 9', 'Riverside', 'Rumirang', 'San Agustin', 'Sikatuna'],
+  'La Castellana': ['Bi-ao', 'Cabacungan', 'Cabagna-an', 'Camandag', 'Lalagsan', 'Mansalanao', 'Masulog', 'Nato', 'Pajo', 'Poblacion', 'Sag-ang', 'Talaptap'],
+  'Manapla': ['Chambery', 'Purisima', 'Punta Mesa', 'Punta Salong', 'Santa Rita', 'Tortosa', 'Barangay I', 'Barangay I-A', 'Barangay I-B', 'Barangay II', 'Barangay II-A'],
+  'Moises Padilla': ['Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4', 'Barangay 5', 'Barangay 6', 'Barangay 7', 'Crossing Magallon', 'Guinpana-an', 'Inolingan', 'Macagahay', 'Magallon Cadre', 'Odiong', 'Quintin Remo'],
+  'Pontevedra': ['Barangay I', 'Barangay II', 'Barangay III', 'Burgos', 'Canroma', 'Don Salvador Benedicto', 'Gomez', 'Mabini', 'Miranda', 'Pandanan', 'Recreo', 'San Juan', 'San Nicolas', 'San Pedro', 'San Rafael', 'San Roque', 'Santa Monica', 'Trinidad', 'Zamora'],
+  'Pulupandan': ['Barangay Zone 1', 'Barangay Zone 2', 'Barangay Zone 3', 'Barangay Zone 4', 'Barangay Zone 4-A', 'Barangay Zone 5', 'Barangay Zone 6', 'Barangay Zone 7', 'Canroma', 'Crossing Belen', 'Mabini', 'Pag-ayon', 'Palaka Norte', 'Palaka Sur', 'Poblacion', 'Puntataytay', 'San Agustin', 'Santa Ana', 'Tapong', 'Ubay'],
+  'San Enrique': ['Bagonawa', 'Baliwagan', 'Batuan', 'Guijalo', 'Nayon', 'Poblacion', 'Sibucao', 'Tabao Baybay', 'Tabao Proper', 'Tibsoc'],
+  'Toboso': ['Bandila', 'Bug-ang', 'General Luna', 'Magticol', 'Poblacion', 'Salamanca', 'San Isidro', 'San Jose', 'Tabun-ac'],
+  'Valladolid': ['Alijis', 'Ayungon', 'Bagumbayan', 'Batuan', 'Bayot', 'Central Tabao', 'Dancalan', 'Guimbala-on', 'Mabini', 'Pacol', 'Palaka', 'Poblacion', 'Sagua', 'Tabao Proper'],
+  'Don Salvador Benedicto': ['Bago', 'Bagong Silang', 'Kandoni', 'Kumalascas', 'Pinowayan', 'Pandanon', 'Pinowayan'],
+  'Calatrava': ['Ani-e', 'Bagacay', 'Bantayanon', 'Buenavista', 'Cabadiangan', 'Cambayobo', 'Castellano', 'Cruz', 'Dolis', 'Hilub-ang', 'Hinab-ongan', 'Ilaya', 'Laga-an', 'Lalong', 'Lemery', 'Lipat-on', 'Lo-oc', 'Ma-aslob', 'Malasibog', 'Malubay', 'Minapasuk', 'Mahilum', 'Paghumayan', 'Pantao', 'Patun-an', 'Pinocutan', 'Poblacion', 'Refugio', 'San Benito', 'San Jose', 'Suba', 'Telim', 'Tigbao', 'Tigbon', 'Winaswasan'],
+  'Candoni': ['Agboy', 'Banga', 'Cabia-an', 'Caningay', 'Gatuslao', 'Haba', 'Paglumutan', 'Payauan', 'Poblacion East', 'Poblacion West'],
+  'E.B. Magalona': ['Alacaygan', 'Alicante', 'Batea', 'Canroma', 'Consing', 'Cudangdang', 'Gahit', 'Latasan', 'Madalag', 'Manta-angan', 'Nanca', 'Pasil', 'Poblacion I', 'Poblacion II', 'Poblacion III', 'San Jose', 'Tabigue', 'Tanza', 'Tomongtong'],
+  'Salvador Benedicto': ['Bago', 'Bagong Silang', 'Igliyan', 'Kumalascas', 'Pandanon', 'Pinowayan', 'Poblacion'],
 }
 
-const CITY_OPTIONS = Object.keys(CITY_BARANGAY_MAP).sort()
+const ILOILO: Record<string, string[]> = {
+  'Iloilo City': [ 
+    'Baldoza', 'Balabago', 'Bantud', 'Banuyao', 'Bolilao', 'Buntatala', 'Burgos-Corazon', 'Calaparan',
+    'Camacho', 'Camalig', 'Cochero', 'Compania', 'Cubay', 'Democracia', 'Dungon A', 'Dungon B', 'Dungon C',
+    'East Baluarte', 'East Timawa', 'Fajardo', 'General Hughes', 'Hipodromo', 'Infante', 'Ingore',
+    'Jalandoni Estate', 'Javellana', 'Jereos', 'Kahirupan', 'La Paz Proper', 'Laguda', 'Lanit',
+    'Lapuz Norte', 'Lapuz Sur', 'Liberation Road', 'Libertad Barangay Proper', 'Lopez Jaena Norte',
+    'Lopez Jaena Sur', 'Luna', 'Mabini', 'Magsaysay Village', 'Mansaya-Lapuz', 'Marcelo H. Del Pilar',
+    'Maria Clara', 'Molo Proper', 'Mohon', 'North Baluarte', 'North Fundidor', 'Oñate De Leon',
+    'Pale Benedicto Rizal', 'Plaza Libertad', 'Poblacion Molo', 'President Roxas', 'Progreso', 'Punong',
+    'Railway', 'Rizal Estanzuela', 'Rizal Pala-Pala', 'San Isidro Norte', 'San Isidro Sur', 'San Jose',
+    'Santa Cruz', 'Santo Domingo', 'Santo Nino Norte', 'Santo Nino Sur', 'Santo Rosario-Duran', 'Santo Tomas',
+    'Seminario', 'Simon Ledesma', 'So-oc', 'South Baluarte', 'South Fundidor', 'Taal', 'Tabuc Suba',
+    'Taytay Zone II', 'Taytay Zone III', 'Ticud La Paz', 'Timawa Tanza I', 'Timawa Tanza II',
+    'Veterans Village', 'West Habog-habog', 'West Timawa', 'Yulo Drive', 'Zamora-Melliza', 'Zerrudo',
+  ],
+  'Dumangas': ['Bagumbayan', 'Balabag', 'Balud', 'Bancal', 'Baras', 'Bolhog', 'Calaboa', 'Calayo', 'Carmelo', 'Casapatan', 'Cato', 'Dawis', 'Ilang-Ilang', 'Libo-on Dalipe', 'Mabigo', 'Macalbang', 'Macatol', 'Malusgod', 'Nabitasan', 'Natividad', 'Paloc Bigque', 'Paloc Sool', 'Panayon', 'Patag', 'Poblacion', 'Pulao', 'Pungtod Daot', 'San Pedro', 'San Roque', 'Sarabia', 'Sinibaran', 'Taminla', 'Tubigan', 'Tulatula Norte', 'Tulatula Sur', 'Zaido'],
+  'Guimbal': ['Baclayan', 'Bagumbayan', 'Balantad', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Barangay VI', 'Barangay VII', 'Buhang', 'Cabasi', 'Calam-isan', 'Cansilayan', 'Dalicanan', 'Igcagay', 'Ibo', 'Igbaras', 'Libo-on', 'Mabisil', 'Maite Norte', 'Maite Sur', 'Manguining', 'Mongpong', 'Poblacion', 'Tan-Agan', 'Tina', 'Tinocuan'],
+  'Janiuay': ['Agsirab', 'Alugmawa', 'Badiangan', 'Balabag', 'Balibagan Oeste', 'Balibagan Este', 'Binubusan', 'Bita-og Bubo', 'Bololacao', 'Cabagu', 'Cabudian', 'Caguisa', 'Canawili', 'Canawon', 'Cañete', 'Daga', 'Dalicanan', 'Gines', 'Guibuangan', 'Igbaras', 'Jalung', 'Lacay-Lacay', 'Layog', 'Lomboy Bungol', 'Lumanay', 'Madarog', 'Malapawe', 'Managuisi', 'Moroboro', 'Natividad', 'Panginman', 'Pasig', 'Pispis', 'Poblacion', 'Quinagaringan Fagtan', 'Quinagaringan Guia', 'Sagcup', 'Salug', 'San Rafael', 'Sebarin', 'Sinuagan', 'Tanao', 'Tigbauan', 'Tupian', 'Ugbo'],
+  'Leganes': ['Adlawon', 'Aganan', 'Ampids', 'Balabag', 'Balijuagan', 'Bito-on', 'Buenavista', 'Buntatala', 'Cagamutan Norte', 'Cagamutan Sur', 'Calawagan', 'Cari Mayor', 'Cari Minor', 'Guanko', 'Handog', 'Libo-on Mabasa', 'Libo-on Saging', 'Maliwanag', 'Naga', 'Napnapan Norte', 'Napnapan Sur', 'Pavia', 'Poblacion', 'Sambag', 'San Jose', 'San Pedro', 'Tacas', 'Tagbac', 'Timbang', 'Tina', 'Tuburan', 'Ubohan', 'Zarraga'],
+  'Miagao': ['Agdum', 'Alimodian', 'Bacorong', 'Badiang', 'Bagumbayan', 'Balibagan', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Barangay VI', 'Barangay VII', 'Barangay VIII', 'Barangay IX', 'Barangay X', 'Barangay XI', 'Barangay XII', 'Barangay XIII', 'Batuan', 'Bita-og', 'Bulaqueña', 'Bularan', 'Bungahan', 'Bungan', 'Cabilauan', 'Cagbanaba', 'Cagbano', 'Caipilan', 'Calagtangan', 'Calamaisan', 'Calbari', 'Casanayan', 'Caticlan', 'Cawayan', 'Cubay', 'Dawog', 'Gebio-an', 'Guisian', 'Igbago', 'Igpalge', 'Ilaya', 'Imbon', 'Indag-an', 'Kirayan Norte', 'Kirayan Tacas', 'Laglag', 'Lanot', 'Locse', 'Mabayan', 'Macaronao', 'Mambatad', 'Narat-an', 'Pajo', 'Pamuringao Proper', 'Panuran', 'Sibunag', 'Siol Norte', 'Tabucan', 'Tacas', 'Tacdangan', 'Tando', 'Tinaytayan', 'Tipolo', 'To-og', 'Tubog', 'Tuburan Norte', 'Tuburan Sur', 'Ubos'],
+  'Oton': ['Aguinaldo', 'Bagongbong', 'Bantud', 'Batiano', 'Bito-on Barangay I', 'Bito-on Barangay II', 'Botong', 'Buaya', 'Cabanbanan', 'Caboloan', 'Cagbang', 'Calubian', 'Capao', 'Carangahan', 'Casualan', 'Dungon', 'Esteban', 'Fundidor', 'Ge-awang', 'Janipaan Este', 'Janipaan Oeste', 'Janipaan Natalio', 'Janipaan Melchor', 'Jorog', 'Lanot', 'Libo-on Mabasa', 'Majanlud', 'Malabor', 'Mambusao', 'Mansaya', 'Mansila', 'Moroboro', 'Morooro', 'Napnapan', 'Narat-an', 'Pagotpot', 'Pangi', 'Pantalan Nabaye', 'Pantalan Navarro', 'Poblacion', 'Polo', 'Puyas', 'Quezon Norte', 'Quezon Sur', 'Sa-ang', 'Salngan', 'San Antonio', 'San Nicolas', 'San Pedro', 'Santo Tomas', 'Sapa', 'Sipitan', 'Sog-ong', 'Tigum', 'Tiogon', 'Tuburan', 'Tugaslon', 'Tumagbok', 'Ungka I', 'Ungka II'],
+  'Passi City': ['Agdayao', 'Aglobong', 'Agsalanan', 'Agtabo', 'Agtambo', 'Antonino', 'Ayaman', 'Bagumbayan', 'Batu', 'Bitaogan', 'Buenavista', 'Bugtong Lumboy', 'Bugtong Naulid', 'Cabalabaguan', 'Cabaruan', 'Cabugao', 'Calamian', 'Calaocan', 'Calleng', 'Camandag', 'Capitan Ramon', 'Caran', 'Cuyos', 'Dita', 'Estancia', 'Ferrer', 'Gines', 'Gutad', 'Lanas', 'Langca', 'Lawis', 'Linao', 'Linao Norte', 'Luca', 'Mambog', 'Manganese', 'Manticon', 'Maquilao', 'Matigu-an', 'Naba', 'Nipa', 'Pandan', 'Pantao', 'Patong-patong', 'Pisao', 'Poblacion Ilawod', 'Poblacion Ilaya', 'Poblacion Poblacion', 'Poblacion Tabuc', 'Punong', 'Quinagaringan', 'Sablogon', 'Salapadan', 'Salngan', 'Salvacion', 'Ticuan', 'Tugas', 'Tugaslon', 'Tuig', 'Tumcon Ilawod', 'Tumcon Ilaya', 'Ugsod', 'Wigan'],
+  'Pavia': ['Aganan', 'Ampid', 'Balabag', 'Balijuagan', 'Barasan Este', 'Barasan Oeste', 'Bohnon', 'Buyuan', 'Caingin', 'Cairohan', 'Dawag', 'Guinhawa Norte', 'Guinhawa Sur', 'Inday', 'Libo-on Saging', 'Linao', 'Lubog', 'Malumpati', 'Naga', 'Napnapan Norte', 'Napnapan Sur', 'Narat-an', 'Omambong', 'Pantalan', 'Pavia Proper', 'Pototan', 'San Agustin', 'San Pedro', 'Tacas', 'Tigum', 'Ungka I', 'Ungka II'],
+  'Pototan': ['Aganan', 'Alupidian', 'Amamaros', 'Bagacay', 'Balabag', 'Balaticon', 'Banban', 'Bantayan', 'Bantud', 'Barasan', 'Batuan', 'Bongco', 'Buenavista', 'Buga', 'Cabilauan', 'Cagbang', 'Caguisanan', 'Calaughan', 'Callang', 'Calolot', 'Camandag', 'Canvenas', 'Caposong', 'Casit-an', 'Dawag', 'Ginalinan', 'Hipona', 'Inay-Inay', 'Jalandoni', 'Jito-o', 'Kagutayan', 'Lampaya', 'Lanot', 'Lawi', 'Linao', 'Lugta', 'Luthangan', 'Madarog', 'Mandu-calahig', 'Mano', 'Marilag', 'Misi', 'Moroboro', 'Naslo', 'Navalas', 'Omadan', 'Pandan Espina', 'Poblacion Norte', 'Poblacion Sur', 'Protaras', 'Punong', 'Quiasan', 'Rojas', 'Sambag', 'Samonte', 'San Agustin', 'San Antonio', 'San Marcos', 'San Pedro', 'Sibacungan', 'Sicad Norte', 'Sicad Sur', 'Siwalo', 'Suelo', 'Sugal', 'Tabuc Norte', 'Tabuc Sur', 'Tabucan', 'Taminla', 'Tamisu Norte', 'Tamisu Sur', 'Tanao', 'Tinaytayan', 'Tugas', 'Tugaslon', 'Tularog', 'Tumcon'],
+  'San Miguel': ['Anilao', 'Asluman', 'Baguingin-Lanot', 'Baluarte', 'Bantayan', 'Barasan', 'Batuan', 'Bongco', 'Buenavista', 'Bungca', 'Bunga', 'Burgos', 'Cabilauan', 'Cag-an', 'Camohonan', 'Candari', 'Candelaria', 'Capinahan', 'Caposong', 'Caray-caray', 'Dakay', 'Daria', 'Estanza', 'Girado', 'Gobonseng', 'Gubang', 'Igcabuad', 'Inogbong', 'Lanjagan', 'Lublub', 'Madarug', 'Manhug', 'Menan', 'Nagusan', 'Nalbugan', 'Oboob', 'Olango', 'Palauan', 'Pandan', 'Pasay', 'Piñan', 'Poblacion', 'Polo', 'Purog', 'Quipot', 'Sagcup', 'Saliguipan', 'San Isidro', 'San Jose', 'San Nicolas', 'San Pedro', 'Sibagon', 'Sibucao', 'Silagon', 'Sinamhay', 'Sinogayan', 'Sulanga', 'Tabuc Ponong', 'Tabucan', 'Tagsalakan', 'Talongonan', 'Tamis', 'Ticuan', 'Tigbauan', 'Tomina', 'Tugaslon', 'Tumao', 'Ubohan', 'Ubujan', 'Yamog'],
+  'Santa Barbara': ['Agusipan', 'Atimonan', 'Bagong Silang', 'Bagumbayan', 'Balabag', 'Balatucan', 'Banban', 'Barasan', 'Batiano', 'Bayunan', 'Bubon Pusod', 'Buenavista', 'Bugasong', 'Bulo Norte', 'Bulo Sur', 'Bunsoran', 'Cabilauan', 'Cagbang', 'Caguyuman', 'Canabuan', 'Cansilayan', 'Capinahan', 'Capitangan', 'Casit-an', 'Dajao', 'Dalicanan', 'Duhawan', 'Guanko', 'Guinamacan', 'Guiso', 'Igcabugao', 'Igbaras', 'Ilang-Ilang', 'Lanas', 'Lipata', 'Logansing', 'Lundag', 'Malawog', 'Mambisoc', 'Mambuyo', 'Mango', 'Manibad', 'Matacong', 'Mincal', 'Nalbugan', 'Napnapan', 'Narat-an', 'Niño', 'Odiong', 'Olaer-Sibunag', 'Pader', 'Palomoc', 'Pasileng Norte', 'Pasileng Sur', 'Patong-patong', 'Pitogo', 'Poblacion', 'Quinagayungan', 'Quinal-oan', 'Sablogon', 'Sacripante', 'Saladan', 'San Agustin', 'San Andres', 'San Antonio', 'San Fernando', 'San Isidro', 'San Jose', 'San Luis', 'San Marcos', 'San Miguel', 'San Pablo', 'San Pedro', 'San Ramon', 'San Roque', 'Santa Rita', 'Santo Tomas', 'Sian', 'Siba-an', 'Sulangan', 'Tabucan', 'Talagutac', 'Tambal', 'Tanque', 'Tigbauan', 'Timawa', 'Tinpas', 'Tipolo', 'Tumcon', 'Turog-turog', 'Utod', 'Wigan'],
+  'Tigbauan': ['Alupidian', 'Bag-ong Barrio', 'Baguingin', 'Bahay', 'Balabag', 'Balikian', 'Balingsag', 'Barangay I', 'Barangay II', 'Barangay III', 'Barangay IV', 'Barangay V', 'Barangay VI', 'Barangay VII', 'Barangay VIII', 'Barangay IX', 'Barangay X', 'Binanua-an', 'Buenavista', 'Bugasong', 'Buntatala', 'Cabalabaguan', 'Cabalic', 'Cabubugan', 'Cagbuhangin', 'Calagtangan', 'Calampitao', 'Cari', 'Dalije', 'Dugman', 'Gua-an', 'Guisian', 'Igcocok', 'Igdolo', 'Igpas', 'Igpuro', 'Ilaya Norte', 'Ilaya Sur', 'Indag-an', 'Ito-o', 'Jamul-awon', 'Lanot', 'Libo-on Nava', 'Ligaya', 'Luca', 'Mabyang', 'Malabed', 'Malag-it Norte', 'Malag-it Sur', 'Minoyan', 'Naro', 'Natividad', 'Negrillos', 'Oyungan', 'Pacuan', 'Panggabungan', 'Pitogo', 'Poblacion Norte', 'Poblacion Sur', 'Salamanca', 'Salucot', 'San Pedro', 'Serallo', 'Sibucad', 'Siol', 'Tabugon', 'Taligaman', 'Talong Cogon', 'Taminla', 'Tigbayog', 'Tiringanan', 'Tubod Norte', 'Tubod Sur'],
+  'Ajuy': ['Agubot', 'Badiangan', 'Barrido', 'Bato Biasong', 'Bay-ang', 'Bucana Bunglas', 'Central', 'Culasi', 'Lanjagan', 'Luca', 'Malayuan', 'Mangorocoro', 'Nasidman', 'Pantalan Nabaye', 'Pantalan Navarro', 'Pedada', 'Pili', 'Pinantan Diel', 'Pinantan Elizalde', 'Poblacion', 'Progreso', 'Puente Bunglas', 'San Antonio', 'Silagon', 'Tagubanhan', 'Tugas', 'Ubuhan'],
+  'Alimodian': ['Abang-abang', 'Agsing', 'Atabayan', 'Baguingin-Lanot', 'Bancal', 'Binalud', 'Bugang', 'Cabalic', 'Cabacanan Proper', 'Cabacanan Rizal', 'Coline-Dalag', 'Cuyad', 'Gines', 'Gubayan', 'Ingas', 'Libas', 'Lico', 'Lugong', 'Mambalite', 'Manasa', 'Manduyog', 'Poblacion', 'Punong', 'Quinaspan', 'Sinamay', 'Sulong', 'Tabug', 'Tawin-tawin', 'Ulay-Bugang', 'Ulay-Hinablan', 'Umondacan'],
+  'Anilao': ['Agbatuan', 'Badiang', 'Balunos', 'Cagpu-an', 'Ciriaco Montaño', 'Dangula-an', 'Guinpana-an', 'Manganese', 'Medina', 'Mostro', 'Palaypay', 'Pantalan', 'Poblacion', 'San Carlos', 'San Juan Crisostomo', 'Santa Rita', 'Serallo', 'Vista Alegre'],
+  'Badiangan': ['Badiangan', 'Bingawan', 'Botong', 'Budiawe', 'Cabayogan', 'Calansanan', 'Catubig', 'Guinacas', 'Iraya', 'Linao', 'Ma-asin', 'Manaolan', 'Odiongan', 'Poblacion', 'San Julian', 'Sariri', 'Sianon', 'Talaba', 'Tamisu'],
+  'Balasan': ['Bacubac', 'Balanti-an', 'Batuan', 'Cabalic', 'Carvasana', 'Cawayan', 'Dolores', 'Gimamanay', 'Ipil', 'Kinalasag', 'Lantangan', 'Lawis', 'Lumbuyan', 'Mamhut Norte', 'Mamhut Sur', 'Maya', 'Nabitasan', 'Poblacion', 'Quiasan', 'Salong', 'Zaragosa'],
+  'Banate': ['Alacaygan', 'Badiangan', 'Belisong', 'Bobon', 'Bularan', 'Carmelo', 'De la Paz', 'Dugwaman', 'Juanico', 'Libertad', 'Magdalo', 'Manaygon', 'Merced', 'Poblacion', 'San Salvador', 'Talokgangan', 'Zona Sur'],
+  'Barotac Nuevo': ['Agutayan', 'Bagonawa', 'Baras', 'Bungca', 'Cabilauan', 'Cruz', 'Guintas', 'Igbong', 'Lagubang', 'Linao', 'Monpon', 'Natividad', 'Palaciawan', 'Poblacion', 'Salihid', 'So-oc', 'Tabucan', 'Talisay', 'Tiwi'],
+  'Barotac Viejo': ['Bugnay', 'California', 'Del Pilar', 'General Luna', 'Natividad', 'Poblacion', 'San Antonio', 'San Francisco', 'San Juan', 'San Lucas', 'San Miguel', 'San Rafael', 'San Roque', 'San Vicente', 'Santiago', 'Santo Domingo', 'Vista Alegre'],
+  'Batad': ['Alapasco', 'Amayong', 'Binon-an', 'Bulak Norte', 'Bulak Sur', 'Cabagohan', 'Calangag', 'Caw-i', 'Hamod', 'Malublub', 'Pasayan', 'Poblacion', 'Quiba-an', 'Salong', 'Santa Cruz', 'Tanza'],
+}
 
-function resolveMapKey(cityVal: string): string | null {
+const NEGROS_ORIENTAL: Record<string, string[]> = {
+  'Canlaon City': [
+    'Bayog', 'Binalbagan', 'Bucalan', 'Budlasan', 'Linothangan', 'Lumapao', 'Mabigo', 'Malaiba', 'Masulog', 'Ninoy Aquino', 'Panubigan', 'Pula'
+  ],
+  'Dumaguete City': [
+    'Bagacay', 'Bajumpandan', 'Balugo', 'Banilad', 'Bantayan', 'Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4', 'Barangay 5', 'Barangay 6', 'Barangay 7', 'Barangay 8', 'Batinguel', 'Buñao', 'Cadawinonan', 'Calindagan', 'Camanjac', 'Candau-ay', 'Cantil-e', 'Daro', 'Junob', 'Looc', 'Mangnao-Canal', 'Motong', 'Piapi', 'Poblacion 1', 'Poblacion 2', 'Poblacion 3', 'Poblacion 4', 'Poblacion 5', 'Poblacion 6', 'Poblacion 7', 'Poblacion 8', 'Pulantubig', 'Tabuctubig', 'Taclobo', 'Talay'
+  ],
+  'Bayawan City': [
+    'Ali-is', 'Banaybanay', 'Banga', 'Bayawan City Proper', 'Bugay', 'Cansumalig', 'Dawis', 'Kalamtukan', 'Kalumboyan', 'Malabugas', 'Mandu-ao', 'Manini-on', 'Minaba', 'Nangka', 'Narra', 'Pagatban', 'Pantao', 'Poblacion', 'San Jose', 'San Roque', 'Suba', 'Tabuan', 'Tayawan', 'Ubante', 'Villareal'
+  ],
+  'Guihulngan City': [
+    'Bakia', 'Balogo', 'Banwague', 'Basak', 'Binobohan', 'Bulado', 'Calamba', 'Buenavista', 'Imelda', 'Kagusuan', 'Linantuyan', 'Luz', 'Mabunga', 'Magsaysay', 'Malusay', 'Maniak', 'Mckinley', 'Planas', 'Poblacion', 'Sandayao', 'Tacpao', 'Tinidad', 'Villegas'
+  ],
+  'Bais City': [
+    'Barangay I', 'Barangay II', 'Cabancalan', 'Calasga-an', 'Cambuilao', 'Canauay', 'Capinahan', 'Consolacion', 'Dansulan', 'Hangyad', 'La Paz', 'Lo-oc', 'Mabunao', 'Manini-on', 'Olandiao', 'Panala-an', 'Poblacion', 'Sab-ahan', 'Tagbao', 'Tamisu', 'Tamogong', 'Tangculogan', 'Valencia'
+  ],
+  'Tanjay City': [
+    'Azagra', 'Bahi-an', 'Luca', 'Manipis', 'Novallas', 'Obogon', 'Poblacion I', 'Poblacion II', 'Poblacion III', 'Poblacion IV', 'Poblacion V', 'Poblacion VI', 'Poblacion VII', 'Poblacion VIII', 'Poblacion IX', 'San Isidro', 'San Jose', 'San Miguel', 'Santa Cruz Nuevo', 'Santa Cruz Viejo', 'Santo Niño', 'Tugas'
+  ],
+  'Amlan': ['Bio-os', 'Jantianon', 'Jugno', 'Mag-abo', 'Poblacion', 'Silab', 'Tambojangin'],
+  'Ayungon': ['Amdus', 'Anibong', 'Atabay', 'Awa-an', 'Banban', 'Calagcalag', 'Candana-ay', 'Carol-an', 'Gomentoc', 'Inacban', 'Iniban', 'Lamigan', 'Maaslum', 'Mabato', 'Manogtong', 'Nabhang', 'Poblacion', 'South Poblacion', 'Talaon', 'Tambo', 'Tampocon I', 'Tampocon II', 'Tibyawan', 'Tungas'],
+  'Bacong': ['Balayagmanok', 'Banilad', 'Buntis', 'Buntod', 'Combado', 'Doldol', 'Isugan', 'Liptong', 'Lutao', 'Magatas', 'Malabago', 'Mampas', 'Nabago', 'Poblacion', 'Sacsac', 'San Miguel', 'Sumbic', 'Timbanga', 'Tubod'],
+  'Bindoy': ['Atotes', 'Batangan', 'Bulod', 'Cabcaban', 'Camudlas', 'Canluto', 'Danao', 'Domolog', 'Manini-on', 'Matobato', 'Nagbalaye', 'Poblacion', 'Salong', 'Tagaytay', 'Tinaogan', 'Tubod'],
+  'Dauin': ['Anahaw', 'Apo Island', 'Bagacay', 'Baslay', 'Batuhon Dacu', 'Bulak', 'Bunga', 'Casile', 'Libjo', 'Lipayo', 'Maayongtubig', 'Mag-aso', 'Magsaysay', 'Malabag', 'Masaplod Norte', 'Masaplod Sur', 'Panubigan', 'Poblacion I', 'Poblacion II', 'Poblacion III', 'Taluot', 'Tugawe', 'Tunga-tunga'],
+  'Valencia': ['Apolinar Velez', 'Balili', 'Bong-ao', 'Bongbong', 'Cataylo', 'Caidiocan', 'Dobdob', 'Liptong', 'Lunga', 'Malabo', 'Malaunay', 'Mampas', 'Palinpinon', 'Poblacion', 'Pulangbato', 'Sagbang', 'West Balabag'],
+}
+
+const PROVINCE_MAP: Record<string, Record<string, string[]>> = {
+  'Negros Occidental': NEGROS_OCCIDENTAL,
+  'Iloilo': ILOILO,
+  'Negros Oriental': NEGROS_ORIENTAL,
+}
+
+const PROVINCE_OPTIONS = Object.keys(PROVINCE_MAP).sort()
+
+function resolveMapKey(cityVal: string, province: string): string | null {
   if (!cityVal) return null
-  const normalized = cityVal.trim().toLowerCase()
-  if (CITY_BARANGAY_MAP[cityVal]) return cityVal
+  const map = PROVINCE_MAP[province]
+  if (!map) return null
 
-  const exactCI = Object.keys(CITY_BARANGAY_MAP).find((k) => k.toLowerCase() === normalized)
+  const normalized = cityVal.trim().toLowerCase()
+  if (map[cityVal]) return cityVal
+
+  const exactCI = Object.keys(map).find((k) => k.toLowerCase() === normalized)
   if (exactCI) return exactCI
 
   const withCity = normalized.endsWith(' city') ? normalized : normalized + ' city'
-  const cityMatch = Object.keys(CITY_BARANGAY_MAP).find((k) => k.toLowerCase() === withCity)
+  const cityMatch = Object.keys(map).find((k) => k.toLowerCase() === withCity)
   if (cityMatch) return cityMatch
 
   const withoutCity = normalized.replace(/ city$/, '').trim()
-  const reverseMatch = Object.keys(CITY_BARANGAY_MAP).find(
-    (k) => k.toLowerCase().replace(/ city$/, '') === withoutCity,
-  )
+  const reverseMatch = Object.keys(map).find((k) => k.toLowerCase().replace(/ city$/, '') === withoutCity)
   if (reverseMatch) return reverseMatch
-
   return null
 }
 
@@ -158,6 +251,7 @@ export default function RegistrationForm() {
   const [pinSource, setPinSource] = useState<'gps' | 'map' | null>(null)
 
   const [geocoding, setGeocoding] = useState(false)
+  const [provinceVal, setProvinceVal] = useState('Negros Occidental')
   const [cityVal, setCityVal] = useState('')
   const [barangayVal, setBarangayVal] = useState('')
   const [streetVal, setStreetVal] = useState('')
@@ -191,11 +285,18 @@ export default function RegistrationForm() {
         comps.find((c) => c.types.includes('administrative_area_level_2')) ||
         comps.find((c) => c.types.includes('administrative_area_level_1'))
 
-      const rawCity = cityComp?.long_name?.trim() ?? ''
-      let resolved = resolveMapKey(rawCity)
-      if (!resolved) resolved = resolveMapKey(rawCity + ' City')
+      const provComp = comps.find((c) => c.types.includes('administrative_area_level_2'))
+      const rawProv = provComp?.long_name?.trim() ?? ''
+      const resolvedProv = PROVINCE_OPTIONS.find(p => p.toLowerCase() === rawProv.toLowerCase())
+      
+      if (resolvedProv) {
+        setProvinceVal(resolvedProv)
+      }
 
-      if (resolved) {
+      const rawCity = cityComp?.long_name?.trim() ?? ''
+      let resolved = resolveMapKey(rawCity, resolvedProv || provinceVal)
+
+      if (resolved && (resolvedProv || provinceVal)) {
         setCityVal(resolved)
         setBarangayVal('')
       }
@@ -220,13 +321,13 @@ export default function RegistrationForm() {
   }, [pendingCoords]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const triage = assessTriage(vulnArr)
-  const resolvedCityKey = resolveMapKey(cityVal)
+  const resolvedCityKey = resolveMapKey(cityVal, provinceVal)
 
   const toggleVuln = (v: Vulnerability) => {
     setVulnArr((p) => (p.includes(v) ? p.filter((x) => x !== v) : [...p, v]))
   }
 
-  const fullAddressPreview = [streetVal, barangayVal, cityVal, 'Negros Occidental']
+  const fullAddressPreview = [streetVal, barangayVal, cityVal, provinceVal]
     .filter(Boolean)
     .join(', ')
 
@@ -240,6 +341,7 @@ export default function RegistrationForm() {
     setGpsAccuracy(null)
     setPendingCoords(null)
     setSourceVal('')
+    setProvinceVal('Negros Occidental')
     setCityVal('')
     setBarangayVal('')
     setStreetVal('')
@@ -314,7 +416,7 @@ export default function RegistrationForm() {
     const contactVal = (fd.get('contact') as string).trim()
     const id = 'HH-' + Date.now().toString().slice(-6)
 
-    const fullAddress = [streetVal, barangayVal, cityVal, 'Negros Occidental']
+    const fullAddress = [streetVal, barangayVal, cityVal, provinceVal]
       .filter(Boolean)
       .join(', ')
 
@@ -444,7 +546,28 @@ export default function RegistrationForm() {
             </div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 12, marginBottom: 12 }}>
+          <div style={{ marginBottom: 12 }}>
+            <label style={labelStyle}>Province</label>
+            <select
+              name="province"
+              required
+              style={inputStyle}
+              value={provinceVal}
+              onChange={(e) => {
+                setProvinceVal(e.target.value)
+                setCityVal('')
+                setBarangayVal('')
+              }}
+            >
+              {PROVINCE_OPTIONS.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
             <div>
               <label style={labelStyle}>
                 City
@@ -467,7 +590,7 @@ export default function RegistrationForm() {
                 <option value="" disabled>
                   Select City
                 </option>
-                {CITY_OPTIONS.map((c) => (
+                {Object.keys(PROVINCE_MAP[provinceVal] || {}).sort().map((c) => (
                   <option key={c} value={c}>
                     {c}
                   </option>
@@ -491,22 +614,11 @@ export default function RegistrationForm() {
                   Select Barangay
                 </option>
                 {resolvedCityKey
-                  ? CITY_BARANGAY_MAP[resolvedCityKey].map((b) => (
+                  ? PROVINCE_MAP[provinceVal][resolvedCityKey].map((b) => (
                       <option key={b} value={b}>
                         {b}
                       </option>
-                    ))
-                  : Object.entries(CITY_BARANGAY_MAP)
-                      .sort(([a], [b]) => a.localeCompare(b))
-                      .map(([city, bgs]) => (
-                        <optgroup key={city} label={city}>
-                          {bgs.map((b) => (
-                            <option key={`${city}-${b}`} value={b}>
-                              {b}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))}
+                      )) : null}
               </select>
             </div>
           </div>
@@ -524,7 +636,7 @@ export default function RegistrationForm() {
             />
           </div>
 
-          {(streetVal || barangayVal || cityVal) && !geocoding && (
+          {(streetVal || barangayVal || cityVal || provinceVal) && !geocoding && (
             <div style={{ padding: '10px 12px', background: 'var(--bg-accent-soft)', border: '1px dashed var(--border)', borderRadius: 10, fontSize: '0.75rem', color: 'var(--fg-muted)', lineHeight: 1.5 }}>
               <span style={{ color: 'var(--accent-blue)', fontWeight: 700, marginRight: 6 }}>Address:</span>
               {fullAddressPreview}
