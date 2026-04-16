@@ -5,15 +5,17 @@ type NoahAnalysisStatus = 'idle' | 'loading' | 'ready' | 'error'
 type LatLng = { lat: number; lng: number }
 
 interface NoahFloodStore {
+  setNoahAnalysis: (key: 'var1' | 'var2' | 'var3', data: any[]) => void
+  setAnalysisData: (key: 'var1' | 'var2' | 'var3', data: any[]) => void
   visible: boolean
   analysisStatus: NoahAnalysisStatus
   analysisError: string | null
   var3PolygonCount: number
   var2PolygonCount: number
   var1PolygonCount: number
-  var3Polygons: Array<Array<LatLng>>
-  var2Polygons: Array<Array<LatLng>>
-  var1Polygons: Array<Array<LatLng>>
+  var3Polygons: any[]
+  var2Polygons: any[]
+  var1Polygons: any[]
   setVisible: (visible: boolean) => void
   ensureAnalysisLoaded: () => Promise<void>
 }
@@ -30,6 +32,23 @@ export const useNoahFloodStore = create<NoahFloodStore>((set, get) => ({
   var1Polygons:     [],
 
   setVisible: (visible) => set({ visible }),
+
+  setNoahAnalysis: (key, data) => {
+    const polyKey = `${key}Polygons` as const;
+    set({
+      [`${key}PolygonCount`]: data.length,
+      [polyKey]: data.map((d: any) => d.geom)
+    } as any);
+  },
+
+  setAnalysisData: (key, data) => {
+    const countKey = `${key}PolygonCount` as const
+    const polyKey = `${key}Polygons` as const
+    set({
+      [countKey]: data.length,
+      [polyKey]: data.map(d => d.geom)
+    } as any)
+  },
 
   ensureAnalysisLoaded: async () => {
     const { analysisStatus } = get()

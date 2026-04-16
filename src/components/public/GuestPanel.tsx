@@ -560,37 +560,39 @@ export default function GuestPanel() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 8,
+          gap: 8,
             flexWrap: 'wrap',
-            padding: '9px 14px',
-            background: 'var(--bg-elevated)',
+          padding: '12px 14px',
+            background: 'var(--bg-surface)',
             border: '1px solid var(--border)',
-            borderRadius: 14,
+            borderRadius: 16,
             fontSize: '0.7rem',
-            fontWeight: 700,
-            color: 'var(--fg-muted)',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
-          <span style={{ color: 'var(--critical-red)', fontWeight: 800 }}>
-            {activeHazards.length} Active {activeHazards.length === 1 ? 'Hazard' : 'Hazards'}
-          </span>
+          <div style={{ width: '100%', color: 'var(--critical-red)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+            {activeHazards.length} Active {activeHazards.length === 1 ? 'Alert' : 'Alerts'}:
+          </div>
           {alertSummary.map((s, i) => (
-            <span key={s.id} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              {i > 0 && <span style={{ color: 'var(--border-color)' }}>|</span>}
+            <span key={s.id} style={{ display: 'flex', alignItems: 'center' }}>
               <button
                 onClick={() => focusHazardCard(s.id, s.type)}
                 style={{
-                  background: 'none',
-                  border: 'none',
+                  background: expandedHazardId === s.id ? 'var(--bg-accent-soft)' : 'var(--bg-inset)',
+                  border: `1px solid ${expandedHazardId === s.id ? 'var(--accent-blue)' : 'var(--border)'}`,
                   cursor: 'pointer',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  color: expandedHazardId === s.id ? 'var(--accent-blue)' : 'var(--fg-default)',
-                  padding: 0,
-                  textDecoration: expandedHazardId === s.id ? 'underline' : 'none',
+                  fontSize: '0.68rem',
+                  fontWeight: 800,
+                  color: expandedHazardId === s.id ? 'var(--accent-blue)' : 'var(--fg-muted)',
+                  padding: '6px 12px',
+                  borderRadius: 8,
+                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
                 }}
               >
-                {s.type}: {s.level}
+                {s.type}: <span style={{ color: expandedHazardId === s.id ? 'var(--accent-blue)' : 'var(--fg-default)' }}>{s.level}</span>
               </button>
             </span>
           ))}
